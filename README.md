@@ -144,6 +144,9 @@ node index.js
 * This isn't meant to be a JavaScript course, for an introductory JavaScript Course see the link below
 <!-- links -->
 * [Programming with Mosh - JavaScript for Beginners](https://www.youtube.com/watch?v=rNmxANyH0BU)
-* For getting JavaScript setup on your Computer, see my Getting Started tutorial here
+* For getting JavaScript setup on your Computer, see my Getting Started tutorial here:
 <!-- links -->
 * [JavaScript - Getting Started](https://github.com/yourwishismine1989/JavaScript_Getting-Started)
+* I borrowed the images for this course from my Discord-Bot-Python documentation, you can see that here:
+<!-- links -->
+* [Discord-Bot-Python](https://github.com/yourwishismine1989/Discord-Bot-Python)
