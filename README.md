@@ -31,8 +31,8 @@
 * in a Terminal window
 <!-- Bash script block -->
 ```bash
-mkdir MyPythonBot
-cd MyPythonBot/
+mkdir MyJavaScriptBot
+cd MyJavaScriptBot/
 npm init --yes
 touch config.js
 touch index.js
@@ -60,7 +60,7 @@ nano config.json
 ```
 {
     "token": "<paste your copied token here>",
-    "invite_url": "<paste the copied URL here>",
+    "inviteURL": "<paste the copied URL here>",
 }
 ```
 * open a new TAB in your Web-Browser and paste the copied URL in the Address bar of the new TAB (don't press ENTER)
