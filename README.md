@@ -1,7 +1,7 @@
 <base target="_blank">
 
-# Discord-Bot-Python
- Basic Discord bot written in Python
+# Discord-Bot-JavaScript
+ Basic Discord bot written in JavaScript
 * Make Discord account if you don't have one already.
 <!-- links -->
 >> [Discord - Register a new account](https://discord.com/register)
@@ -33,17 +33,19 @@
 ```bash
 mkdir MyPythonBot
 cd MyPythonBot/
-touch requirements.txt
-touch .env
-touch bot.py
-nano .env
+npm init --yes
+touch config.js
+touch index.js
+nano config.json
 ```
 * In the Discord Developer Portal click ***Copy*** to copy your bot's private TOKEN (always keep this private)
 <!--Images-->
 ![Copy your bot private TOKEN](Copy-your-bot-private-TOKEN.jpg)
 * back in the terminal (nano still open)
 ```
-TOKEN=<paste your copied token here>
+{
+    "token": "<paste your copied token here>",
+}
 ```
 * In the Discord Developer Portal
 <!--Ordered List -->
@@ -56,8 +58,10 @@ TOKEN=<paste your copied token here>
 ![OAuto2 steops](OAuth2_steps.jpg)
 * back in the terminal (nano still open)
 ```
-TOKEN=<paste your copied token here>
-INVITE_URL=<paste the copied URL here>
+{
+    "token": "<paste your copied token here>",
+    "invite_url": "<paste the copied URL here>",
+}
 ```
 * open a new TAB in your Web-Browser and paste the copied URL in the Address bar of the new TAB (don't press ENTER)
 * click back to the Discord Developer Portal TAB
@@ -67,18 +71,22 @@ INVITE_URL=<paste the copied URL here>
 >>2. click ***Copy*** button under ***APPLICATION ID***
 * back in the terminal (nano still open)
 ```
-TOKEN=<paste your copied token here>
-INVITE_URL=<paste the copied URL here>
-APPLICATION_ID=<paste copied APPICATION ID here>
+{
+    "token": "<paste your copied token here>",
+    "inviteURL": "<paste the copied URL here>",
+    "applicationID": "<paste copied APPICATION ID here>"
+}
 ```
 * In the Discord Developer Portal
 >>3. click ***Copy*** button under ***PUBLIC_KEY***
 * back in the terminal (nano still open)
 ```
-TOKEN=<paste your copied token here>
-INVITE_URL=<paste the copied URL here>
-APPLICATION_ID=<paste copied APPICATION ID here>
-PUBLIC_KEY=<paste your copied PUBLIC_KEY here>
+{
+    "token": "<paste your copied token here>",
+    "inviteURL": "<paste the copied URL here>",
+    "applicationID": "<paste copied APPICATION ID here>",
+    "publicKey": "<paste your copied PUBLIC_KEY here>"
+}
 ```
 >>4. CTRL+O -> ENTER -> CTRL+X
 <!--Images-->
@@ -99,61 +107,43 @@ PUBLIC_KEY=<paste your copied PUBLIC_KEY here>
 * back in the terminal
 <!-- Bash script block -->
 ```bash
-sudo apt --yes install python3-pip
-pip install --upgrade python-dotenv
-pip install --upgrade discord.py
-echo 'export PATH="/home/<your Username>/.local/bin:$PATH"' >> ~/.bashrc
-source ~/.bashrc
-nano bot.py
-> import os
-> import random
-> import discord
-> from dotenv import load_dotenv
+npm install discord.js
+nano index.js
+> const Discord = require("discord.js");
+> const { token } = require('./config.json');
+> const allIntents = Discord.Intents;
+> const { Client, Events } = require('discord.js');
+> const client = new Client({ intents: 3276799 });
 > 
-> load_dotenv()
-> TOKEN = os.getenv('TOKEN')
-> INVITE_URL = os.getenv('INVITE_URL')
-> APPLICATION_ID = os.getenv('APPLICATION_ID')
-> PUBLIC_KEY = os.getenv('PUBLIC_KEY')
+> client.once(Events.ClientReady, c => {
+>     console.log(`Ready! Logged in as ${c.user.tag}`);
+> });
 > 
-> intents = discord.Intents().all()
-> client = discord.Client(intents=intents)
+> client.on(Events.MessageCreate, async (interaction) => {
+>     console.log(interaction.content);
+>     if (interaction.content.toLowerCase() === 'hello') {
+>         await interaction.reply({ content: `Hello, ${interaction.author.username}. Have a wonderful day!`, ephemeral: false });
+>     }
+> });
 > 
-> @client.event
-> async def on_ready():
->     print(f'{client.user} has connected to Discord!')
-> 
-> @client.event
-> async def on_message(message):
->     if message.author == client.user:
->         return
-> 
->     hello = [
->         'Hello, {}.'.format(message.author.name),
->         'Good Morning, {}.'.format(message.author.name),
->         'Good Evening, {}.'.format(message.author.name)
->     ]
-> 
->     if message.content == 'hello':
->         response = random.choice(hello)
->         await message.channel.send(response)
->         print(response)
-> 
-> client.run(TOKEN)
+> client.login(token);
 > CTRL+O -> ENTER -> CTRL+X# bot.py
-python bot.py
+node index.js
 ```
-### Congratulations, on making your first Discord bot in Python
+### Congratulations, on making your first Discord bot in JavaScript
 #### Notes
 <!-- links -->
 * [Discord - Developer Docs](https://discord.com/developers/docs/intro)
-* Tested on Ubuntu 22.04 on 2023-10-01
+* [Discord - Developer Server](https://discord.gg/discord-developers)
+* [discord.js](https://discordjs.guide)
+* [Discord Intents Calculator](https://discord-intents-calculator.vercel.app)
+* Tested on Ubuntu 22.04 on 2023-10-02
 * Recommend using VSCode instead of nano
 <!-- links -->
 * [Visual Studio Code (VSCode)](https://code.visualstudio.com/download)
-* This isn't meant to be a Python course, for an introductory Python Course see the link below
+* This isn't meant to be a JavaScript course, for an introductory JavaScript Course see the link below
 <!-- links -->
-* [Programming with Mosh - Python for Beginners](https://www.youtube.com/watch?v=kqtD5dpn9C8)
-* For getting Python setup on your Computer, see my Getting Started tutorial here
+* [Programming with Mosh - JavaScript for Beginners](https://www.youtube.com/watch?v=rNmxANyH0BU)
+* For getting JavaScript setup on your Computer, see my Getting Started tutorial here
 <!-- links -->
-* [Python - Getting Started](https://github.com/yourwishismine1989/Python_Getting-Started)
+* [JavaScript - Getting Started](https://github.com/yourwishismine1989/JavaScript_Getting-Started)
